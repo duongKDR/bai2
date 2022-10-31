@@ -15,24 +15,44 @@
     <div class="container">
       <form
         class="col-6 border border-dark rounded p-3 m-auto"
-        action="/loai/store"
+        action="/book/update/<%=sp.id  %>"
         method="POST"
       >
         <div class="form-group mb-3">
           <label for="name">Tên </label>
-          <input class="form-control bg-info" name="name" id="name" />
+          <input
+            class="form-control bg-info"
+            value="<%=sp.name  %> "
+            name="name"
+            id="name"
+          />
         </div>
         <div class="form-group mb-3">
           <label for="content">Nội dung</label>
-          <input class="form-control bg-primary" name="content" id="content" />
+          <input
+            class="form-control bg-primary"
+            value="<%=sp.content  %>"
+            name="content"
+            id="content"
+          />
         </div>
         <div class="form-group mb-3">
           <label for="image">Image</label>
-          <input class="form-control bg-primary" name="image" id="image" />
+          <input
+            class="form-control bg-primary"
+            value="<%=sp.image%>"
+            name="image"
+            id="image"
+          />
         </div>
         <div class="form-group mb-3">
           <label for="VND">VND</label>
-          <input class="form-control bg-primary" name="VND" id="VND" />
+          <input
+            class="form-control bg-primary"
+            value="<%=sp.VND  %>"
+            name="VND"
+            id="VND"
+          />
         </div>
         <div class="form-group mb-3">
           <label for="up_date">up date</label>
@@ -40,13 +60,20 @@
         </div>
         <div class="form-group mb-3">
           <label>Ẩn hiện</label>
-          <input type="radio" name="hidden" value="1" checked /> Hiện &nbsp;
-          &nbsp; <input type="radio" name="hidden" value="0" /> Ẩn
+          <input type="radio" name="hidden" value="1" <%=(sp.hidden==1)?
+          "checked" :"" %> /> Hiện &nbsp; &nbsp; <input type="radio"
+          name="hidden" value="0" <%=(sp.hidden==0)? "checked" :"" %>/> Ẩn
         </div>
         <div class="form-group mt-3">
           <button type="submit" class="btn btn-dark px-4 py-2 text-white">
             LƯU DATABASE
           </button>
+          <a
+            class="btn btn-dark px-4 py-2 text-white"
+            style="text-decoration: none"
+            href="/book"
+            >CANCEL
+          </a>
         </div>
       </form>
     </div>

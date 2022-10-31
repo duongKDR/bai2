@@ -1,15 +1,15 @@
-const loai = require("../models/database");
+const book = require("../models/database");
 var db = require("../models/database");
 var utc = new Date().toJSON().slice(0, 10).replace(/-/g, "/");
 exports.getlist = (req, res, next) => {
   let sql = `SELECT * FROM sp`;
   db.query(sql, function (err, data) {
-    res.render("loai_list", { list: data });
+    res.render("book_list", { list: data });
   });
 };
 exports.getLoaiCreate = (req, res, next) => {
   //res.send('Form thêm loại sách');
-  res.render("loai_addnew");
+  res.render("book_addnew");
 };
 exports.postStore = (req, res, next) => {
   let n = req.body.name;
@@ -21,14 +21,14 @@ exports.postStore = (req, res, next) => {
   book1 = { name: n, content: c, image: i, VND: t, up_date: u, hidden: hd };
   db.query("insert into sp SET ?", book1, function (err, data) {
     if (err) throw err;
-    res.redirect("/loai");
+    res.redirect("/book");
   });
 };
 exports.getEdit = (req, res, next) => {
   var id = req.params.id;
-  let sql = `SELECT id, name, content, image, VND, up_date, hidden  FROM sp where id=${id}`;
+  let sql = `SELECT id, name, content, image, VND, up_date, hidden  FROM sp where id=${id}`;//
   db.query(sql, function (err, data) {
-    res.render("loai_edit", { sp: data[0] });
+    res.render("book_edit", { sp: data[0] });
   });
 };
 exports.postUpdate = (req, res, next) => {
@@ -47,7 +47,7 @@ exports.postUpdate = (req, res, next) => {
       if (data.affectedRows == 0) {
         console.log(`Không có id loại ${id} để cập nhật`);
       }
-      res.redirect("/loai");
+      res.redirect("/book");
     }
   );
 };
@@ -59,6 +59,6 @@ exports.getDelete = (req, res, next) => {
     if (data.affectedRows == 0) {
       console.log(`Không có loại ${id} để xóa`);
     }
-    res.redirect("/loai");
+    res.redirect("/book");
   });
 };
